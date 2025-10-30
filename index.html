@@ -269,7 +269,7 @@
                         onClick={copyAddress}
                         className="flex items-center gap-2 px-6 py-3 bg-slate-800 text-white rounded-full hover:bg-slate-700 transition"
                       >
-                        {copied ? '✓ Kopirano!' : '📋 Kopiraj Adresu'}
+                        <span>{copied ? '✓ Kopirano!' : '📋 Kopiraj Adresu'}</span>
                       </button>
                       
                         href={inviteConfig.venue.mapUrl}
@@ -277,13 +277,13 @@
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-6 py-3 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition"
                       >
-                        🗺️ Otvori Mapu
+                        <span>🗺️ Otvori Mapu</span>
                       </a>
                       <button
                         onClick={addToCalendar}
                         className="flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition"
                       >
-                        📅 Dodaj u Kalendar
+                        <span>📅 Dodaj u Kalendar</span>
                       </button>
                     </div>
                   </div>
