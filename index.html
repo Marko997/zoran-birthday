@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZORANOVO ROĐENDANSKO VEČE</title>
-  <meta name="description" content="Poziv na Zoranovu rođendansku proslavu - 23. decembar 2025." />
-  <meta property="og:title" content="ZORANOVO ROĐENDANSKO VEČE" />
-  <meta property="og:description" content="Samo jedna noć. Garantovana zabava." />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Poziv na Zoranovu rođendansku proslavu - 23. decembar 2025.">
+  <meta property="og:title" content="ZORANOVO ROĐENDANSKO VEČE">
+  <meta property="og:description" content="Samo jedna noć. Garantovana zabava.">
+  <meta property="og:type" content="website">
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Pomoćne klase ako Tailwind purge izbaci nešto slično */
-    .video-letterbox { background: transparent; }
-  </style>
 </head>
 <body>
   <div id="root"></div>
@@ -63,16 +59,7 @@
       faq: [
         { q: "Dress code?", a: "Dođi kako ti je ugodno. Ležerno i elegantno!" },
         { q: "Parking?", a: "Dostupan parking u blizini splava." },
-        { q: "Koliko traje proslava?", a: "Počinje u 20h, a završava se kad svi kažu 'još jednu!' 🎉🍻" },
-        // DODATO: korisne informacije koje nisu pokloni
-        { q: "Ulaz i lista gostiju?", a: "Na ulazu reci da si na Zoranovoj proslavi. Ako si +1, samo naglasi uz čije ime." },
-        { q: "Prevoz?", a: "Preporuka je taksi ili deljeni prevoz (Bolt/Uber). Ako dolaziš kolima, računaj na gužvu oko Ušća." },
-        { q: "Garderoba?", a: "Planirana je garderoba / ostava. Ponesi manje torbe za brži prolaz." },
-        { q: "Pušenje?", a: "Na otvorenom/terasi bez problema. U unutrašnjem delu po pravilima lokala – prati oznake." },
-        { q: "Muzika i želje?", a: "Slobodno predloži pesmu DJ-u na licu mesta – biće mesta i za hitove i za nostalgiju." },
-        { q: "Fotografije?", a: "Fotkaj, snimaj, deli! Hashtag: #ZoranovoVeče 📸" },
-        { q: "Plaćanje?", a: "Obično prolaze i kartice i keš, ali uvek je dobro imati malo gotovine za svaki slučaj." },
-        { q: "Kontakt na licu mesta?", a: "Ako ti bilo šta zatreba, potraži Zorana ili osoblje na ulazu – rado pomažu." }
+        { q: "Koliko traje proslava?", a: "Počinje u 20h, a završava se kad svi kažu 'još jednu!' 🎉🍻" }
       ]
     };
 
@@ -89,11 +76,9 @@
       useEffect(() => {
         const stored = localStorage.getItem('partyUnlocked');
         if (stored === 'true' || !inviteConfig.quiz.enabled) setUnlocked(true);
-
-        const v = videoRef.current;
-        if (v) {
-          // Nek nekad browser blokira autoplay – pokušaj pa ignorisi grešku
-          v.play().catch(() => {});
+        
+        if (videoRef.current) {
+          videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
         }
 
         const timer = setInterval(() => {
@@ -127,8 +112,13 @@
         setTimeout(() => setCopied(false), 2000);
       };
 
-      const formatDate = () => new Date(inviteConfig.dateISO).toLocaleDateString('sr-RS', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-      const formatTime = () => new Date(inviteConfig.dateISO).toLocaleTimeString('sr-RS', { hour: '2-digit', minute: '2-digit' }) + 'h';
+      const formatDate = () => {
+        return new Date(inviteConfig.dateISO).toLocaleDateString('sr-RS', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      };
+
+      const formatTime = () => {
+        return new Date(inviteConfig.dateISO).toLocaleTimeString('sr-RS', { hour: '2-digit', minute: '2-digit' }) + 'h';
+      };
 
       const addToCalendar = () => {
         const date = new Date(inviteConfig.dateISO);
@@ -146,24 +136,20 @@
 
       return (
         <div className="min-h-screen bg-black">
-          {/* HERO sa videom: object-contain + crne trake po potrebi */}
-          <header className="relative min-h-screen flex items-center justify-center text-white px-4 overflow-hidden bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900">
-            <video
+          <header className="relative min-h-screen flex items-center justify-center text-white px-4 overflow-hidden">
+            <video 
               ref={videoRef}
-              autoPlay
-              loop
-              muted
+              autoPlay 
+              loop 
+              muted 
               playsInline
-              preload="metadata"
-              className="absolute inset-0 w-full h-full object-contain z-0"
+              className="absolute inset-0 w-full h-full object-cover"
               style={{ objectPosition: 'center' }}
             >
               <source src={inviteConfig.backgroundVideo.src} type="video/mp4" />
             </video>
-            {/* Tamni gradijent preko videa */}
-            <div className="absolute inset-0 z-10 bg-black/50" />
-
-            <div className="relative z-20 text-center max-w-4xl mx-auto">
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+            <div className="relative z-10 text-center max-w-4xl mx-auto">
               <div className="text-6xl mb-4 animate-bounce">🎉</div>
               <h1 className="text-5xl md:text-7xl font-bold mb-4 drop-shadow-2xl">{inviteConfig.title}</h1>
               <p className="text-xl md:text-2xl mb-8 opacity-90 drop-shadow-lg">{inviteConfig.subtitle}</p>
@@ -236,36 +222,11 @@
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold mb-8 text-center">📸 Ako je meni ovako dobro, zamisli kako ce tek tebi biti</h2>
                 <div className="relative">
-                  <img
-                    src={inviteConfig.gallery[currentImage].src}
-                    alt={inviteConfig.gallery[currentImage].alt}
-                    className="w-full h-[500px] md:h-[750px] lg:h-[900px] object-cover rounded-2xl shadow-xl"
-                    onTouchStart={(e) => { e.currentTarget.setAttribute('data-touch-start', e.touches[0].clientX); }}
-                    onTouchEnd={(e) => {
-                      const touchStartX = parseFloat(e.currentTarget.getAttribute('data-touch-start'));
-                      const touchEndX = e.changedTouches[0].clientX;
-                      const diff = touchStartX - touchEndX;
-                      if (Math.abs(diff) > 50) {
-                        if (diff > 0 && currentImage < inviteConfig.gallery.length - 1) {
-                          setCurrentImage(currentImage + 1);
-                        } else if (diff < 0 && currentImage > 0) {
-                          setCurrentImage(currentImage - 1);
-                        }
-                      }
-                    }}
-                  />
-                  <button
-                    onClick={() => setCurrentImage(Math.max(0, currentImage - 1))}
-                    className={`absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-3 shadow-lg transition ${currentImage === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    disabled={currentImage === 0}
-                  >
+                  <img src={inviteConfig.gallery[currentImage].src} alt={inviteConfig.gallery[currentImage].alt} className="w-full h-[500px] md:h-[750px] lg:h-[900px] object-cover rounded-2xl shadow-xl" onTouchStart={(e) => { e.currentTarget.setAttribute('data-touch-start', e.touches[0].clientX); }} onTouchEnd={(e) => { const touchStartX = parseFloat(e.currentTarget.getAttribute('data-touch-start')); const touchEndX = e.changedTouches[0].clientX; const diff = touchStartX - touchEndX; if (Math.abs(diff) > 50) { if (diff > 0 && currentImage < inviteConfig.gallery.length - 1) { setCurrentImage(currentImage + 1); } else if (diff < 0 && currentImage > 0) { setCurrentImage(currentImage - 1); } } }} />
+                  <button onClick={() => setCurrentImage(Math.max(0, currentImage - 1))} className={`absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-3 shadow-lg transition ${currentImage === 0 ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={currentImage === 0}>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                   </button>
-                  <button
-                    onClick={() => setCurrentImage(Math.min(inviteConfig.gallery.length - 1, currentImage + 1))}
-                    className={`absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-3 shadow-lg transition ${currentImage === inviteConfig.gallery.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    disabled={currentImage === inviteConfig.gallery.length - 1}
-                  >
+                  <button onClick={() => setCurrentImage(Math.min(inviteConfig.gallery.length - 1, currentImage + 1))} className={`absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-3 shadow-lg transition ${currentImage === inviteConfig.gallery.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={currentImage === inviteConfig.gallery.length - 1}>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                   </button>
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full">
@@ -304,7 +265,7 @@
                   <h2 className="text-2xl font-bold">Potvrdi Dolazak</h2>
                   <button onClick={() => setShowRSVP(false)} className="text-gray-500 hover:text-gray-700 text-3xl">×</button>
                 </div>
-                <iframe src={inviteConfig.rsvp.formUrl} className="w-full h-[70vh]" frameBorder="0" title="RSVP">Učitavanje…</iframe>
+                <iframe src={inviteConfig.rsvp.formUrl} className="w-full h-[70vh]" frameBorder="0">Učitavanje…</iframe>
               </div>
             </div>
           )}
