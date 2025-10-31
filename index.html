@@ -233,11 +233,6 @@
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full">
                     <span className="text-white font-bold">{currentImage + 1} / {inviteConfig.gallery.length}</span>
                   </div>
-                  <div className="flex justify-center gap-2 mt-6 flex-wrap">
-                    {inviteConfig.gallery.map((_, index) => (
-                      <button key={index} onClick={() => setCurrentImage(index)} className={`w-3 h-3 rounded-full transition ${currentImage === index ? 'bg-blue-700 w-8' : 'bg-gray-300'}`} />
-                    ))}
-                  </div>
                 </div>
               </div>
             </section>
