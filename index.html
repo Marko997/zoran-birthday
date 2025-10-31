@@ -23,7 +23,7 @@
       dateISO: "2025-12-23T20:00:00+01:00",
       venue: { name: "Splav Move", address: "Ušće bb, Beograd 11070", mapUrl: "https://maps.google.com/?q=Splav+Move+Ušće+Beograd" },
       rsvp: { formUrl: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" },
-      backgroundVideo: { type: "youtube", youtubeId: "L_jWHffIx5E" },
+      backgroundVideo: { type: "youtube", youtubeId: "pFgCvQxcySI" },
       quiz: { enabled: true, question: "Koliko godina punim?", choices: ["18", "21 (ponovo)", "25", "99"], correctIndex: 1, successText: "Tačno! Otkrio/la si detalje. 🎉" },
       gallery: [
         { type: "image", src: "https://i.imgur.com/4lH9PAJ.jpg", alt: "Fotografija 1" },
@@ -209,7 +209,7 @@
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold mb-8 text-center">📸 Ako je meni ovako dobro, zamisli kako ce tek tebi biti</h2>
                 <div className="relative">
-                  <img src={inviteConfig.gallery[currentImage].src} alt={inviteConfig.gallery[currentImage].alt} className="w-full h-[500px] md:h-[600px] object-cover rounded-2xl shadow-xl" onTouchStart={(e) => { e.currentTarget.setAttribute('data-touch-start', e.touches[0].clientX); }} onTouchEnd={(e) => { const touchStartX = parseFloat(e.currentTarget.getAttribute('data-touch-start')); const touchEndX = e.changedTouches[0].clientX; const diff = touchStartX - touchEndX; if (Math.abs(diff) > 50) { if (diff > 0 && currentImage < inviteConfig.gallery.length - 1) { setCurrentImage(currentImage + 1); } else if (diff < 0 && currentImage > 0) { setCurrentImage(currentImage - 1); } } }} />
+                  <img src={inviteConfig.gallery[currentImage].src} alt={inviteConfig.gallery[currentImage].alt} className="w-full h-[500px] md:h-[750px] lg:h-[900px] object-cover rounded-2xl shadow-xl" onTouchStart={(e) => { e.currentTarget.setAttribute('data-touch-start', e.touches[0].clientX); }} onTouchEnd={(e) => { const touchStartX = parseFloat(e.currentTarget.getAttribute('data-touch-start')); const touchEndX = e.changedTouches[0].clientX; const diff = touchStartX - touchEndX; if (Math.abs(diff) > 50) { if (diff > 0 && currentImage < inviteConfig.gallery.length - 1) { setCurrentImage(currentImage + 1); } else if (diff < 0 && currentImage > 0) { setCurrentImage(currentImage - 1); } } }} />
                   <button onClick={() => setCurrentImage(Math.max(0, currentImage - 1))} className={`absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-3 shadow-lg transition ${currentImage === 0 ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={currentImage === 0}>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                   </button>
@@ -249,7 +249,7 @@
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
               <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
                 <div className="p-6 border-b flex justify-between items-center">
-                  <h2 className="text-2xl font-bold">Potvrdi Dolazak</h2>
+                  <h2 className="text-2xl font-bold">Potvrdi dolazak</h2>
                   <button onClick={() => setShowRSVP(false)} className="text-gray-500 hover:text-gray-700 text-3xl">×</button>
                 </div>
                 <iframe src={inviteConfig.rsvp.formUrl} className="w-full h-[70vh]" frameBorder="0">Učitavanje…</iframe>
