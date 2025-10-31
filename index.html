@@ -17,13 +17,13 @@
   <div id="root"></div>
   <script type="text/babel">
     const { useState, useEffect } = React;
-    const inviteConfig = {
-      title: "ZORANOVO ROĐENDANSKO VEČE",
-      subtitle: "Samo jedna noć. Garantovana zabava.",
-      dateISO: "2025-12-23T20:00:00+01:00",
-      venue: { name: "Splav Move", address: "Ušće bb, Beograd 11070", mapUrl: "https://maps.google.com/?q=Splav+Move+Ušće+Beograd" },
-      rsvp: { formUrl: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" },
-      backgroundVideo: { type: "file", src: "https://i.imgur.com/QQR9ex2.mp4" },
+const inviteConfig = {
+  title: "ZORANOVO ROĐENDANSKO VEČE",
+  subtitle: "Samo jedna noć. Garantovana zabava.",
+  dateISO: "2025-12-23T20:00:00+01:00",
+  venue: { name: "Splav Move", address: "Ušće bb, Beograd 11070", mapUrl: "https://maps.google.com/?q=Splav+Move+Ušće+Beograd" },
+  rsvp: { formUrl: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" },
+  backgroundVideo: { type: "file", src: "./IMG_5283.mp4" },  // <-- OVO PROMENI
       quiz: { enabled: true, question: "Koliko godina punim?", choices: ["18", "21 (ponovo)", "25", "99"], correctIndex: 1, successText: "Tačno! Otkrio/la si detalje. 🎉" },
       gallery: [
         { type: "image", src: "https://i.imgur.com/4lH9PAJ.jpg", alt: "Fotografija 1" },
