@@ -14,7 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Pomoćne klase ako Tailwind purge izbaci nešto slično */
-    .video-letterbox { background: #000; }
+    .video-letterbox { background: transparent; }
   </style>
 </head>
 <body>
@@ -64,6 +64,14 @@
         { q: "Dress code?", a: "Dođi kako ti je ugodno. Ležerno i elegantno!" },
         { q: "Parking?", a: "Dostupan parking u blizini splava." },
         { q: "Koliko traje proslava?", a: "Počinje u 20h, a završava se kad svi kažu 'još jednu!' 🎉🍻" },
+        // DODATO: korisne informacije koje nisu pokloni
+        { q: "Ulaz i lista gostiju?", a: "Na ulazu reci da si na Zoranovoj proslavi. Ako si +1, samo naglasi uz čije ime." },
+        { q: "Prevoz?", a: "Preporuka je taksi ili deljeni prevoz (Bolt/Uber). Ako dolaziš kolima, računaj na gužvu oko Ušća." },
+        { q: "Garderoba?", a: "Planirana je garderoba / ostava. Ponesi manje torbe za brži prolaz." },
+        { q: "Pušenje?", a: "Na otvorenom/terasi bez problema. U unutrašnjem delu po pravilima lokala – prati oznake." },
+        { q: "Muzika i želje?", a: "Slobodno predloži pesmu DJ-u na licu mesta – biće mesta i za hitove i za nostalgiju." },
+        { q: "Fotografije?", a: "Fotkaj, snimaj, deli! Hashtag: #ZoranovoVeče 📸" },
+        { q: "Plaćanje?", a: "Obično prolaze i kartice i keš, ali uvek je dobro imati malo gotovine za svaki slučaj." },
         { q: "Kontakt na licu mesta?", a: "Ako ti bilo šta zatreba, potraži Zorana ili osoblje na ulazu – rado pomažu." }
       ]
     };
@@ -139,7 +147,7 @@
       return (
         <div className="min-h-screen bg-black">
           {/* HERO sa videom: object-contain + crne trake po potrebi */}
-          <header className="relative min-h-screen flex items-center justify-center text-white px-4 overflow-hidden bg-black">
+          <header className="$1bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900$2">
             <video
               ref={videoRef}
               autoPlay
@@ -226,7 +234,7 @@
           {unlocked && (
             <section className="py-16 px-4 bg-white">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl font-bold mb-8 text-center">📸 Sad malo ja:</h2>
+                <h2 className="text-4xl font-bold mb-8 text-center">📸 Ako je meni ovako dobro, zamisli kako ce tek tebi biti</h2>
                 <div className="relative">
                   <img
                     src={inviteConfig.gallery[currentImage].src}
