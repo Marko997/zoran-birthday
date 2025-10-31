@@ -23,7 +23,7 @@
       dateISO: "2025-12-23T20:00:00+01:00",
       venue: { name: "Splav Move", address: "Ušće bb, Beograd 11070", mapUrl: "https://maps.google.com/?q=Splav+Move+Ušće+Beograd" },
       rsvp: { formUrl: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" },
-      backgroundVideo: { type: "youtube", youtubeId: "lCPyMi142H8" },
+      backgroundVideo: { type: "file", src: "https://i.imgur.com/QQR9ex2.mp4" },
       quiz: { enabled: true, question: "Koliko godina punim?", choices: ["18", "21 (ponovo)", "25", "99"], correctIndex: 1, successText: "Tačno! Otkrio/la si detalje. 🎉" },
       gallery: [
         { type: "image", src: "https://i.imgur.com/4lH9PAJ.jpg", alt: "Fotografija 1" },
@@ -132,8 +132,10 @@
       return (
         <div className="min-h-screen bg-black">
           <header className="relative min-h-screen flex items-center justify-center text-white px-4 overflow-hidden">
-            <div className="absolute inset-0 w-full h-full overflow-hidden">
-              <iframe className="absolute top-1/2 left-1/2 w-[200%] h-[200%] -translate-x-1/2 -translate-y-1/2 pointer-events-none" src={`https://www.youtube.com/embed/${inviteConfig.backgroundVideo.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${inviteConfig.backgroundVideo.youtubeId}&controls=0&showinfo=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080`} allow="autoplay; encrypted-media" style={{ minWidth: '100vw', minHeight: '100vh' }}></iframe>
+            <div className="absolute inset-0 w-full h-full">
+              <video autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover">
+                <source src={inviteConfig.backgroundVideo.src} type="video/mp4" />
+              </video>
             </div>
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
             <div className="relative z-10 text-center max-w-4xl mx-auto">
