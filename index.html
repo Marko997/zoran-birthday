@@ -147,7 +147,7 @@
       return (
         <div className="min-h-screen bg-black">
           {/* HERO sa videom: object-contain + crne trake po potrebi */}
-          <header className="$1bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900$2">
+          <header className="$1 isolate">
             <video
               ref={videoRef}
               autoPlay
@@ -155,13 +155,13 @@
               muted
               playsInline
               preload="metadata"
-              className="absolute inset-0 w-full h-full object-contain video-letterbox"
+              className="$1 -z-10 pointer-events-none"
               style={{ objectPosition: 'center' }}
             >
               <source src={inviteConfig.backgroundVideo.src} type="video/mp4" />
             </video>
             {/* Tamni gradijent preko videa */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
 
             <div className="relative z-10 text-center max-w-4xl mx-auto">
               <div className="text-6xl mb-4 animate-bounce">🎉</div>
